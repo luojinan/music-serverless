@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/test/test",
     "pages/playlist/playlist",
     "pages/blog/blog",
     "pages/profile/profile"
@@ -16,16 +17,18 @@
     "selectedColor": "#d43c43",
     "list": [
       {
-        "pagePath": "pages/playlist/playlist",
-        "text": "音乐",
+        "pagePath": "pages/test/test",
+        "text": "测key",
         "iconPath": "images/music.png",
         "selectedIconPath": "images/music-actived.png"
-      },{
+      },
+      {
         "pagePath": "pages/blog/blog",
         "text": "发现",
         "iconPath": "images/blog.png",
         "selectedIconPath": "images/blog-actived.png"
-      },{
+      },
+      {
         "pagePath": "pages/profile/profile",
         "text": "我的",
         "iconPath": "images/profile.png",

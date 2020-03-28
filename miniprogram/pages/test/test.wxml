@@ -1,0 +1,12 @@
+<!--miniprogram/pages/test/test.wxml-->
+<block wx:for="{{list}}" wx:key="item">
+  <view ><checkbox />{{item}}</view>
+</block>
+
+<button bind:tap="sort">随机排序</button>
+
+<block wx:for="{{list2}}" wx:key="id">
+  <view ><checkbox />{{item.name}}</view>
+</block>
+
+<button bind:tap="sort2">随机排序</button>
