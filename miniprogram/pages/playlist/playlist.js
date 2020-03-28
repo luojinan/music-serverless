@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    swiperImgUrls:[{url:''},{url:''},{url:''}]
+    swiperImgUrls:[{url:''},{url:''},{url:''}],
+    playlist:6
   },
 
   /**
