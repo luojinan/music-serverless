@@ -10,3 +10,11 @@
   justify-content: space-around;
   margin-top: 10rpx;
 }
+.nomore-playlist{
+  width: 100%;
+  text-align: center;
+  padding: 10rpx 0;
+  background-color: #f2f2f2;
+  color: #999999;
+  font-size: 24rpx;
+}

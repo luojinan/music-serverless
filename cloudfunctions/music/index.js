@@ -14,12 +14,13 @@ exports.main = async (event, context) => {
   const app = new TcbRouter({ event }) // 传入前端上传参数
 
   app.router('playlist',async(ctx,next)=>{
+    const total = await Playlist.count()  // 返回的是对象
     const res = await Playlist.skip(event.start)
                               .limit(event.limit)
                               .orderBy('createTime','desc')
                               .get()
     // 该路由返回值，不再是直接return
-    ctx.body = res
+    ctx.body = {...res,total:total.total}
   })
 
   // 云函数返回中间处理后的路由

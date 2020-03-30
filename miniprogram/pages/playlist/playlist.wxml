@@ -12,6 +12,9 @@
     <!-- <x-playlist itemData="{{item}}"></x-playlist> -->
     <x-playlist itemData="{{item}}"></x-playlist>
   </block>
+  <view wx:if="{{playlist.length==total}}" class="nomore-playlist">
+    没有更多数据了~
+  </view>
     
 </view>
   

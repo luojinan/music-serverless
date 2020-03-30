@@ -6,14 +6,11 @@ Page({
    */
   data: {
     swiperImgUrls:[{url:''},{url:''},{url:''}],
-    playlist:[]
+    playlist:[],
+    total:-1
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  async onLoad(options) {
-    console.log('请求云函数');
+  async getMusicList(){
+    wx.showLoading({title:'加载中...'});
     const res = await wx.cloud.callFunction({
       name:'music',
       data:{
@@ -22,17 +19,25 @@ Page({
         $url:'playlist'
       }
     })
-    console.log(res.result.data);
+    console.log(res.result);
     this.setData({
-      playlist:res.result.data
+      playlist:this.data.playlist.concat(res.result.data),
+      total: res.result.total
     })
+    wx.hideLoading()
+    wx.stopPullDownRefresh()
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad(options) {
+    this.getMusicList()
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
   },
 
   /**
@@ -60,14 +65,18 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.setData({
+      playlist:[]
+    })
+    this.getMusicList()
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    if(this.data.playlist.length == this.data.total) return
+    this.getMusicList()
   },
 
   /**
