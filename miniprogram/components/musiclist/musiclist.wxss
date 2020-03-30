@@ -25,8 +25,15 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.xmusiclist-info_alia{
+  color: #999;
+}
 .xmusiclist-info_desc{
   margin-top: 10rpx;
   font-size: 24rpx;
   color: #999;
+}
+
+.playing view, .playing text{
+  color: #d43c43;
 }
