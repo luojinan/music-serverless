@@ -1,5 +1,5 @@
 <!--components/playlistItem/playlistItem.wxml-->
-<view class="playlist-container">
+<view class="playlist-container" catch:tap="toMusicList">
   <image class="playlist-img" src="{{itemData.picUrl}}" />  
   <text class="playlist-playcount">{{itemData.playCount}}</text>
   <text class="playlist-name">{{itemData.name}}</text>

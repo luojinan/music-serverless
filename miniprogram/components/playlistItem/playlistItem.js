@@ -12,7 +12,6 @@ Component({
       }
     }
   },
-
   /**
    * 组件的初始数据
    */
@@ -24,6 +23,10 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    toMusicList(){
+      wx.navigateTo({
+        url: `../../pages/musiclist/musiclist?playlistId=${this.data.itemData.id}`
+      })
+    },
   }
 })
