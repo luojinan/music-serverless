@@ -10,7 +10,7 @@
 <view class="playlist">
   <block wx:for="{{playlist}}" wx:key="{{index}}">
     <!-- <x-playlist itemData="{{item}}"></x-playlist> -->
-    <x-playlist></x-playlist>
+    <x-playlist itemData="{{item}}"></x-playlist>
   </block>
     
 </view>

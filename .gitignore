@@ -1,5 +1,6 @@
 # compiled output
 /cloudfunctions/node_modules
 /cloudfunctions/getPlaylist/node_modules
+/cloudfunctions/music/node_modules
 /server/node_modules
 

@@ -6,14 +6,26 @@ Page({
    */
   data: {
     swiperImgUrls:[{url:''},{url:''},{url:''}],
-    playlist:6
+    playlist:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  async onLoad(options) {
+    console.log('请求云函数');
+    const res = await wx.cloud.callFunction({
+      name:'music',
+      data:{
+        start:this.data.playlist.length,
+        limit:15,
+        $url:'playlist'
+      }
+    })
+    console.log(res.result.data);
+    this.setData({
+      playlist:res.result.data
+    })
   },
 
   /**

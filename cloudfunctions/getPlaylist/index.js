@@ -1,4 +1,4 @@
-// 云函数入口文件
+// 定时执行，从网易云获取歌单数据，存入本项目云数据库
 const cloud = require('wx-server-sdk')
 
 cloud.init()
