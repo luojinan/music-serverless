@@ -1,2 +1,13 @@
 <!--miniprogram/pages/musiclist/musiclist.wxml-->
-<text>miniprogram/pages/musiclist/musiclist.wxml</text>
+<view class="musiclist-header" style="background:url({{detailInfo.coverImgUrl}}) no-repeat top/cover" />
+<view class="musiclist-header_mask" />
+
+<view class="musiclist-header_info">
+  <image class="musiclist-header_img" src="{{detailInfo.coverImgUrl}}"/>
+  <view class="musiclist-header_info--text">
+    <view class="musiclist-header_name">
+      {{detailInfo.name}}
+    </view>
+  </view>
+</view>
+  

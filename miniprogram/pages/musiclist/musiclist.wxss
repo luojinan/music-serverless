@@ -1,1 +1,44 @@
 /* miniprogram/pages/musiclist/musiclist.wxss */
+.musiclist-header{
+  height: 320rpx;
+  filter: blur(40rpx); /*模糊背景图*/
+  opacity: .4; /*透明度*/
+}
+
+/*蒙板在模糊图下面*/
+.musiclist-header_mask{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 320rpx;
+  background-color: #333;
+  z-index: -1;
+}
+
+.musiclist-header_info{
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  padding: 20rpx;
+}
+
+.musiclist-header_img{
+  width: 280rpx;
+  flex: 0 0 280rpx;
+  height: 280rpx;
+  border-radius: 6rpx;
+  margin-right: 24rpx;
+}
+.musiclist-header_info--text{
+  color: #fff;
+  line-height: 60rpx;
+  flex: 1;
+}
+.musiclist-header_name{
+  font-size: 36rpx;
+  font-weight: 400;
+}
