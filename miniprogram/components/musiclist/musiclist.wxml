@@ -1,0 +1,14 @@
+<!--components/musiclist/musiclist.wxml-->
+<block wx:for="{{list}}" wx:key="id"> 
+  <view class="xmusiclist-wrapper">
+    <view class="xmusiclist-index">{{index+1}}</view>
+
+    <view class="xmusiclist-info">
+      <view class="xmusiclist-info_name">{{item.name}}<text class="xmusiclist-info_alia">{{item.alia}}</text></view>
+      <view class="xmusiclist-info_desc">{{item.ar[0].name}}-{{item.al.name}}</view>
+    </view>
+      
+  </view>
+    
+</block>
+  

@@ -11,3 +11,4 @@
   </view>
 </view>
   
+<x-musiclist list="{{list}}"></x-musiclist>
