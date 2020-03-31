@@ -29,7 +29,7 @@ Component({
     },
     toPlayer(index){
       wx.navigateTo({
-        url: `../../pages/player/player?musicId=${this.data.playingId}&index=${index}`
+        url: `../../pages/player/player?index=${index}`
       })
     },
   }

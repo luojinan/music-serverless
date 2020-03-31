@@ -6,9 +6,25 @@ Page({
    * 页面的初始数据
    */
   data: {
-    _musicDetail:'',
-    songImgUrl:'',
+    _musiceIndex:'',  // 当前歌曲在歌曲列表中序列
+    _musicDetail:'',  // 根据序列从歌曲列表中取歌曲详情数据
+    _musicList:[],    // 本地缓存跳转来的歌曲列表
+    songImgUrl:'',    // 根据歌曲id云函数获取的歌曲资源url
     isPlaying:false
+  },
+  onNext(){
+    this.data._musiceIndex++
+    if(this.data._musiceIndex == this.data._musicList.length){
+      this.data._musiceIndex = 0
+    }
+    this.getMusicDetail()
+  },
+  onPrev(){
+    this.data._musiceIndex--
+    if(this.data._musiceIndex < 0 ){
+      this.data._musiceIndex = this.data._musicList.length-1
+    }
+    this.getMusicDetail()
   },
   // 切换播放状态
   togglePlaying(){
@@ -18,12 +34,13 @@ Page({
       isPlaying:!this.data.isPlaying
     })
   },
-  async getMusicUrl(musicId){
+  // 云函数获取音乐资源url
+  async getMusicUrl(){
     wx.showLoading({title:'歌曲加载中...'});
     const res = await wx.cloud.callFunction({
       name:'music',
       data:{
-        musicId,
+        musicId:this.data._musicList[this.data._musiceIndex].id,
         $url:'musicUrl'
       }
     })
@@ -38,19 +55,23 @@ Page({
     })
     wx.hideLoading()
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    const musiclist = wx.getStorageSync('musiclist')
-    console.log('歌曲详情',musiclist[options.index])
-    this.data._musicDetail = musiclist[options.index]
+  // 根据歌曲序列获取本地缓存当前歌曲信息
+  getMusicDetail(){
+    this.data._musicList = wx.getStorageSync('musiclist')
+    console.log('歌曲详情',this.data._musicList[this.data._musiceIndex])
+    this.data._musicDetail = this.data._musicList[this.data._musiceIndex]
     wx.setNavigationBarTitle({title: this.data._musicDetail.name}) // 动态标题-歌曲名
     this.setData({
       songImgUrl: this.data._musicDetail.al.picUrl
     })
-    console.log('歌曲id',options);
-    this.getMusicUrl(options.musicId)
+    this.getMusicUrl()
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    this.data._musiceIndex = options.index
+    this.getMusicDetail()
   },
 
   /**
