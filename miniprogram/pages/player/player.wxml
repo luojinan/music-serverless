@@ -6,3 +6,11 @@
 <view class="player-songimg">
   <image class="player-image" src="{{songImgUrl}}" />
 </view>
+
+<view class="player-control">
+  <text class="iconfont icon-shangyishoushangyige"></text>
+  <text class="iconfont {{isPlaying?'icon-zanting1':'icon-bofang1'}}"></text>
+  <text class="iconfont icon-xiayigexiayishou"></text>
+  
+</view>
+  

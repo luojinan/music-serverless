@@ -51,3 +51,23 @@
   height: 368rpx;
   border-radius: 50%;
 }
+
+/* 控制播放部分 */
+.player-control{
+  position: absolute;
+  bottom: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+}
+.player-control .iconfont{
+  color: #fefefe;
+}
+.icon-shangyishoushangyige, .icon-xiayigexiayishou{
+  font-size: 80rpx;
+}
+.icon-zanting1, .icon-bofang1{
+  font-size: 120rpx;
+  margin: 0 50rpx;
+}
