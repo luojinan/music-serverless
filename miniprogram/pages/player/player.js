@@ -10,6 +10,14 @@ Page({
     songImgUrl:'',
     isPlaying:false
   },
+  // 切换播放状态
+  togglePlaying(){
+    if(this.data.isPlaying) backAudioManager.pause()
+    else backAudioManager.play()
+    this.setData({
+      isPlaying:!this.data.isPlaying
+    })
+  },
   async getMusicUrl(musicId){
     wx.showLoading({title:'歌曲加载中...'});
     const res = await wx.cloud.callFunction({

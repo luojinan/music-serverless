@@ -3,13 +3,13 @@
 <view class="player-bg_mask"></view>
 
 <!-- 中间唱片部分 -->
-<view class="player-songimg">
-  <image class="player-image" src="{{songImgUrl}}" />
+<view class="player-songimg {{isPlaying?'needle':''}}">
+  <image class="player-image rotation {{isPlaying?'':'rotation-paused'}}" src="{{songImgUrl}}" />
 </view>
 
 <view class="player-control">
   <text class="iconfont icon-shangyishoushangyige"></text>
-  <text class="iconfont {{isPlaying?'icon-zanting1':'icon-bofang1'}}"></text>
+  <text class="iconfont {{isPlaying?'icon-zanting1':'icon-bofang1'}}" bind:tap="togglePlaying"></text>
   <text class="iconfont icon-xiayigexiayishou"></text>
   
 </view>

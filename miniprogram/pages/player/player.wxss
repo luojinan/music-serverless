@@ -39,6 +39,11 @@
   left: 266rpx;
   transform: rotate(-15deg);  /*旋转角度*/
   transform-origin: 24rpx 10rpx; /*旋转原点*/
+  transition:transform .5s ease;  /*样式发生变化时的过渡效果 */
+}
+/* 动态操作伪元素，不要写空格 */
+.needle.player-songimg::after{
+  transform: rotate(0deg);
 }
 
 .player-image{
@@ -71,4 +76,25 @@
 .icon-zanting1, .icon-bofang1{
   font-size: 120rpx;
   margin: 0 50rpx;
+}
+
+/* 持续旋转动画 */
+.rotation{
+  /* 动作名 持续时间 匀速方式 重复动画 */
+  animation: rotation 12s linear infinite;
+  -moz-animation: rotation 12s linear infinite;
+  -webkit-animation: rotation 12s linear infinite;
+  -o-animation: rotation 12s linear infinite;
+}
+@keyframes rotation{
+  from{
+    transform: rotate(0deg);
+  }
+  to{
+    transform: rotate(360deg);
+  }
+}
+/* 持续动画要暂停状态,不是把持续动画去掉(那样将回到初始状态)这里要保持停止的样式 */
+.rotation-paused{
+  animation-play-state: paused;
 }
