@@ -1,25 +1,48 @@
 // miniprogram/pages/player/player.js
+const backAudioManager = wx.getBackgroundAudioManager()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    _musicDetail:'',
     songImgUrl:'',
     isPlaying:false
   },
-
+  async getMusicUrl(musicId){
+    wx.showLoading({title:'歌曲加载中...'});
+    const res = await wx.cloud.callFunction({
+      name:'music',
+      data:{
+        musicId,
+        $url:'musicUrl'
+      }
+    })
+    console.log('获取歌单歌曲列表',res)
+    backAudioManager.src = res.result.data[0].url
+    backAudioManager.title = this.data._musicDetail.name
+    backAudioManager.coverImgUrl = this.data._musicDetail.al.picUrl
+    backAudioManager.singer = this.data._musicDetail.ar[0].name
+    backAudioManager.epname = this.data._musicDetail.al.name
+    this.setData({
+      isPlaying:true
+    })
+    wx.hideLoading()
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     const musiclist = wx.getStorageSync('musiclist')
     console.log('歌曲详情',musiclist[options.index])
-    const musicDetail = musiclist[options.index]
-    wx.setNavigationBarTitle({title: musicDetail.name}) // 动态标题-歌曲名
+    this.data._musicDetail = musiclist[options.index]
+    wx.setNavigationBarTitle({title: this.data._musicDetail.name}) // 动态标题-歌曲名
     this.setData({
-      songImgUrl: musicDetail.al.picUrl
+      songImgUrl: this.data._musicDetail.al.picUrl
     })
+    console.log('歌曲id',options);
+    this.getMusicUrl(options.musicId)
   },
 
   /**

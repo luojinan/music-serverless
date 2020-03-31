@@ -56,9 +56,10 @@
 .player-control{
   position: absolute;
   bottom: 8%;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  width: 100%;
   display: flex;
+  justify-content: center;
   align-items: center;
 }
 .player-control .iconfont{

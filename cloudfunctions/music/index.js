@@ -38,6 +38,14 @@ exports.main = async (event, context) => {
     ctx.body = musiclist
   })
 
+  // 根据musicId获取音频资源地址
+  app.router('musicUrl',async(ctx,next)=>{
+    // 获取网易云歌单列表数据
+    const res = await request(`${BASE_URL}/song/url?id=${event.musicId}`)
+    const musicUrlRes = JSON.parse(res)
+    // 该路由返回值，不再是直接return
+    ctx.body = musicUrlRes
+  })
 
   // 云函数返回中间处理后的路由
   return app.serve()
