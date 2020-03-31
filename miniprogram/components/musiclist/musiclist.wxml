@@ -1,6 +1,6 @@
 <!--components/musiclist/musiclist.wxml-->
 <block wx:for="{{list}}" wx:key="id"> 
-  <view class="xmusiclist-wrapper {{item.id==playingId?'playing':''}}" data-musicid="{{item.id}}" catch:tap="onSelect">
+  <view class="xmusiclist-wrapper {{item.id==playingId?'playing':''}}" data-musicid="{{item.id}}" data-index="{{index}}" catch:tap="onSelect">
     <view class="xmusiclist-index">{{index+1}}</view>
 
     <view class="xmusiclist-info">

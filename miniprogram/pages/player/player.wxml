@@ -1,0 +1,8 @@
+<!--miniprogram/pages/player/player.wxml-->
+<view class="player-bg" style="background:url({{songImgUrl}}) center/cover no-repeat"></view>
+<view class="player-bg_mask"></view>
+
+<!-- 中间唱片部分 -->
+<view class="player-songimg">
+  <image class="player-image" src="{{songImgUrl}}" />
+</view>

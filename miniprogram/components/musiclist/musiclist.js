@@ -25,6 +25,12 @@ Component({
       this.setData({
         playingId:e.currentTarget.dataset.musicid
       })
-    }
+      this.toPlayer(e.currentTarget.dataset.index)
+    },
+    toPlayer(index){
+      wx.navigateTo({
+        url: `../../pages/player/player?musicId=${this.data.playingId}&index=${index}`
+      })
+    },
   }
 })

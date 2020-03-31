@@ -1,38 +1,24 @@
-// miniprogram/pages/musiclist/musiclist.js
+// miniprogram/pages/player/player.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    detailInfo:{},
-    list:[]
+    songImgUrl:''
   },
-  async getMusicList(playlistId){
-    wx.showLoading({title:'加载中...'});
-    const {result:{playlist}} = await wx.cloud.callFunction({
-      name:'music',
-      data:{
-        playlistId,
-        $url:'musiclist'
-      }
-    })
-    console.log('获取歌单歌曲列表',playlist)
-    this.setData({
-      list:playlist.tracks,
-      detailInfo:{
-        name:playlist.name,
-        coverImgUrl:playlist.coverImgUrl
-      }
-    })
-    wx.setStorageSync('musiclist', playlist.tracks) // 歌单歌曲列表数据存入本地缓存(用于歌曲详情数据)
-    wx.hideLoading()
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getMusicList(options.playlistId)
+    const musiclist = wx.getStorageSync('musiclist')
+    console.log('歌曲详情',musiclist[options.index])
+    const musicDetail = musiclist[options.index]
+    wx.setNavigationBarTitle({title: musicDetail.name}) // 动态标题-歌曲名
+    this.setData({
+      songImgUrl: musicDetail.al.picUrl
+    })
   },
 
   /**

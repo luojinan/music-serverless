@@ -31,7 +31,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 2,
 			"list": [
 				{
 					"id": -1,
@@ -44,6 +44,13 @@
 					"name": "歌单歌曲列表",
 					"pathName": "pages/musiclist/musiclist",
 					"query": "playlistId=2070050345",
+					"scene": null
+				},
+				{
+					"id": 2,
+					"name": "播放页",
+					"pathName": "pages/player/player",
+					"query": "index=0",
 					"scene": null
 				}
 			]

@@ -1,0 +1,53 @@
+/* miniprogram/pages/player/player.wxss */
+.player-bg{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  filter: blur(40rpx);  /*模糊效果*/
+  opacity: .5;  /*透明度*/
+  z-index: -1;  /*在黑色遮罩上面，在唱片内容下面*/
+}
+.player-bg_mask{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #222;
+  z-index: -2;
+}
+
+/* 中间唱片部分 */
+.player-songimg{
+  width: 592rpx;
+  height: 592rpx;
+  background: url('https://s3.music.126.net/mobile-new/img/disc.png?d3bdd1080a72129346aa0b4b4964b75f=') no-repeat center/contain;
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%,140rpx);
+}
+/* 指针 */
+.player-songimg::after{
+  content: '';
+  background: url('https://s3.music.126.net/m/s/img/needle.png?702cf6d95f29e2e594f53a3caab50e12') no-repeat center/contain;
+  width: 192rpx;
+  height: 274rpx;
+  position: absolute;
+  top: -150rpx;  /*以伪元素前class为参照，0的时候在中间，因此要- */
+  left: 266rpx;
+  transform: rotate(-15deg);  /*旋转角度*/
+  transform-origin: 24rpx 10rpx; /*旋转原点*/
+}
+
+.player-image{
+  position: absolute; /*相对于唱片部分，而不是整个页面*/
+  left: 50%;
+  top: 50%;
+  margin-top: -184rpx;
+  margin-left: -184rpx;
+  width: 368rpx;
+  height: 368rpx;
+  border-radius: 50%;
+}
