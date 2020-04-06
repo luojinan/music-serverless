@@ -19,6 +19,15 @@
   z-index: -2;
 }
 
+.player-info_wrapper{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
 /* 中间唱片部分 */
 .player-songimg{
   width: 592rpx;
@@ -97,4 +106,13 @@
 /* 持续动画要暂停状态,不是把持续动画去掉(那样将回到初始状态)这里要保持停止的样式 */
 .rotation-paused{
   animation-play-state: paused;
+}
+
+/* 进度条部分 */
+.progress-bar_warpper{
+  position: absolute;
+  left: 50%;
+  width: 90%;
+  bottom: 24%;
+  transform: translateX(-50%);
 }

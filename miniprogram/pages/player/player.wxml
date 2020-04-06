@@ -2,15 +2,21 @@
 <view class="player-bg" style="background:url({{songImgUrl}}) center/cover no-repeat"></view>
 <view class="player-bg_mask"></view>
 
-<!-- 中间唱片部分 -->
-<view class="player-songimg {{isPlaying?'needle':''}}">
-  <image class="player-image rotation {{isPlaying?'':'rotation-paused'}}" src="{{songImgUrl}}" />
-</view>
+<view class="player-info_wrapper">
+  <!-- 中间唱片部分 -->
+  <view class="player-songimg {{isPlaying?'needle':''}}">
+    <image class="player-image rotation {{isPlaying?'':'rotation-paused'}}" src="{{songImgUrl}}" />
+  </view>
 
-<view class="player-control">
-  <text class="iconfont icon-shangyishoushangyige" bind:tap="onPrev"></text>
-  <text class="iconfont {{isPlaying?'icon-zanting1':'icon-bofang1'}}" bind:tap="togglePlaying"></text>
-  <text class="iconfont icon-xiayigexiayishou" bind:tap="onNext"></text>
-  
+  <!-- 进度条部分 -->
+  <view class="progress-bar_warpper">
+    <x-progress-bar></x-progress-bar>
+  </view>
+  <!-- 切歌部分 -->
+  <view class="player-control">
+    <text class="iconfont icon-shangyishoushangyige" bind:tap="onPrev"></text>
+    <text class="iconfont {{isPlaying?'icon-zanting1':'icon-bofang1'}}" bind:tap="togglePlaying"></text>
+    <text class="iconfont icon-xiayigexiayishou" bind:tap="onNext"></text>
+  </view>
+
 </view>
-  
