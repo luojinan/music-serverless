@@ -18,7 +18,8 @@ Component({
     moveDisX:0,
     progress:0,
     _areaDomWidth:0,
-    _viewDomWidth:0
+    _viewDomWidth:0,
+    _preSecond:-1
   },
   
   lifetimes: {
@@ -78,6 +79,19 @@ Component({
 
       backAudioManager.onTimeUpdate(()=>{
         console.log('onTimeUpdate');
+        const currentSec = backAudioManager.currentTime // 监听获取当前播放秒数
+        const duration = backAudioManager.duration  // 获取音频总秒数
+        const currentTimeObj = this._dateFormat(currentSec)
+
+        // 手动节流为1秒才setData，通过判断当前秒数小数点前一个值是否相等
+        if(currentSec.toString().split('.')[0]==this.data._preSecond) return
+        console.log('一秒执行一次setData',currentSec);
+        this.setData({
+          moveDisX:(this.data._areaDomWidth-this.data._viewDomWidth)*currentSec/duration,
+          progress:currentSec/duration*100,
+          ['time.currentTime']:`${currentTimeObj.min}:${currentTimeObj.sec}`
+        })
+        this.data._preSecond = currentSec.toString().split('.')[0]
       })
 
       backAudioManager.onEnded(()=>{
