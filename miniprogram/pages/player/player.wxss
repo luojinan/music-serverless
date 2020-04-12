@@ -27,7 +27,11 @@
   right: 0;
   text-align: center;
 }
-
+/*中间歌词组件部分*/
+.lyric-comp{
+  width: 100%;
+  height: 100%;  /*留出底部控制部分*/
+}
 /* 中间唱片部分 */
 .player-songimg{
   width: 592rpx;

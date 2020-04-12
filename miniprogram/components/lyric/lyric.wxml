@@ -1,5 +1,9 @@
 <!--components/lyric/lyric.wxml-->
-<scroll-view class="lyric-com">
-  歌词组件
+<scroll-view class="lyric-scroll">
+  <view class="lyric-wrapper">
+    <block wx:for="{{lrcList}}" wx:key="index">
+      <view class="lyric-text">{{item.lrcText}}</view>
+    </block>
+  </view>
 </scroll-view>
   
