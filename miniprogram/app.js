@@ -14,7 +14,17 @@ App({
         traceUser: true,
       })
     }
-
-    this.globalData = {}
+    // 全局变量
+    this.globalData = {
+      playingMusicId:-1
+    }
+  },
+  // 全局函数
+  setPlayMusicId(musicId){
+    console.log('触发全局函数',musicId)
+    this.globalData.playingMusicId = musicId
+  },
+  getPlayMusicId(){
+    return this.globalData.playingMusicId
   }
 })

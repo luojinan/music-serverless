@@ -1,5 +1,7 @@
 // miniprogram/pages/player/player.js
 const backAudioManager = wx.getBackgroundAudioManager()
+const app =  getApp()
+
 Page({
 
   /**
@@ -89,6 +91,7 @@ Page({
     this.setData({
       songImgUrl: this.data._musicDetail.al.picUrl
     })
+    app.setPlayMusicId(this.data._musicDetail.id)  // 调用全局函数存储全局变量
     this.getMusicUrl()
     this.getMusicLyric()
   },
