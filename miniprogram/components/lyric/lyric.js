@@ -49,7 +49,7 @@ Component({
     // 获取当前播放秒数，并找到第几个歌词
     updateCurrentSec(second){
       const lrcList = this.data.lrcList
-      console.log(second,lrcList[lrcList.length-1])
+      // console.log(second,lrcList[lrcList.length-1])
       // 纯音乐情况
       if(lrcList.length==0) return
 
@@ -68,6 +68,7 @@ Component({
       for (let index = 0; index < lrcList.length; index++) {
         // 当找到当前秒数在哪个区间（10  大于1赋值1 大于2赋值2 大于3赋值3...小于则跳出），即取出index，并中断循环
         if(second<=lrcList[index].time){
+          if(this.data.currentIndex==index-1) return
           this.setData({
             currentIndex: index-1,
             scrollTop:(index-1)*this.data._lyrTextHeight    // 往上滑动多少句歌词的高度 64rpx->px

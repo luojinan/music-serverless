@@ -112,7 +112,7 @@ Component({
 
         // 手动节流为1秒才setData，通过判断当前秒数小数点前一个值是否相等
         if(currentSec.toString().split('.')[0]==this.data._preSecond) return
-        console.log('一秒执行一次setData',currentSec);
+        // console.log('一秒执行一次setData',currentSec);
         this.setData({
           moveDisX:(this.data._areaDomWidth-this.data._viewDomWidth)*currentSec/this.data._duration,
           progress:currentSec/this.data._duration*100,
