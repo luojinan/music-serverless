@@ -1,5 +1,5 @@
 <!--components/lyric/lyric.wxml-->
-<scroll-view class="lyric-scroll">
+<scroll-view class="lyric-scroll" scroll-y scroll-top="{{scrollTop}}">
   <view class="lyric-wrapper">
     <block wx:for="{{lrcList}}" wx:key="index">
       <view class="lyric-text {{index==currentIndex?'hightlight-lyric-text':''}}" >{{item.lrcText}}</view>

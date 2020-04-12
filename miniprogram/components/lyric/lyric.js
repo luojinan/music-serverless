@@ -12,13 +12,26 @@ Component({
    */
   data: {
     lrcList:'',
-    currentIndex:0
+    currentIndex:0,   // 高亮显示的歌词序列
+    scrollTop:0,      // 控制滚动位置,单位px
+    _lyrTextHeight:0   // 不同手机px转rpx的值
   },
   // 监听器
   observers:{
     lyric(val){
       // console.log(val);
       this._parseLyric(val)
+    }
+  },
+  lifetimes:{
+    ready(){
+      wx.getSystemInfo({
+        success:(res)=>{
+          // 获取手机宽度px,除以750得比例，乘以多少rpx值，得到px的值
+          this.data._lyrTextHeight = res.screenWidth/750 *64
+        }
+      })
+        
     }
   },
   /**
@@ -34,10 +47,12 @@ Component({
       for (let index = 0; index < lrcList.length; index++) {
         // 当找到当前秒数在哪个区间（10  大于1赋值1 大于2赋值2 大于3赋值3...小于则跳出），即取出index，并中断循环
         if(second<=lrcList[index].time){
-          this.data.currentIndex = index-1
+          this.setData({
+            currentIndex: index-1,
+            scrollTop:(index-1)*this.data._lyrTextHeight    // 往上滑动多少句歌词的高度 64rpx->px
+          })
           break
         }
-        this.setData({currentIndex: this.data.currentIndex})
       }
     },
     _parseLyric(string){
