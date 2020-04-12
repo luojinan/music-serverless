@@ -71,6 +71,8 @@ Component({
       backAudioManager.onPlay(()=>{
         console.log('onPlay');
         this.data._isMove&&(this.data._isMove = false)
+        // 歌曲全局面板控制播放暂停时触发，传递给页面控制歌曲状态
+        this.triggerEvent('onPlay')
     })
 
       backAudioManager.onStop(()=>{
@@ -79,6 +81,7 @@ Component({
 
       backAudioManager.onPause(()=>{
         console.log('onPause');
+        this.triggerEvent('onPause')
       })
 
       backAudioManager.onWaiting(()=>{

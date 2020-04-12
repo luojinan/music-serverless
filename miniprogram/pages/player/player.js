@@ -30,6 +30,17 @@ Page({
     }
     this.getMusicDetail()
   },
+  // 组件监听歌曲状态切换(一般为全局音乐控制器触发)
+  onPlay(){
+    this.setData({
+      isPlaying:true
+    })
+  },
+  onPause(){
+    this.setData({
+      isPlaying:false
+    })
+  },
   // 接收进度条组件，当前播放秒数，直接触发歌词组件的事件
   timeUpdate(event){
     this.selectComponent('.lrc-dom').updateCurrentSec(event.detail.currentSec)
