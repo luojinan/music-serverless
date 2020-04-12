@@ -17,6 +17,8 @@ Component({
     },
     moveDisX:0,
     progress:0,
+    _duration:0,  // 歌曲总秒数
+    _isMove:false,
     _areaDomWidth:0,
     _viewDomWidth:0,
     _preSecond:-1
@@ -32,6 +34,26 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    onChange(event){
+      console.log(event)
+      if(event.detail.source == 'touch'){
+        this.data._isMove = true
+        this.data.moveDisX = event.detail.x // 滑块背景色位置
+        this.data.progress = event.detail.x / (this.data._areaDomWidth-this.data._viewDomWidth) *100
+      }
+    },
+    onTouchEnd(){
+      const currentSec = backAudioManager.currentTime // 监听获取当前播放秒数
+      const currentTimeObj = this._dateFormat(currentSec)
+      // 修改进度条相关显示参数
+      this.setData({
+        moveDisX:this.data.moveDisX,
+        progress:this.data.progress,
+        ['time.currentTime']:`${currentTimeObj.min}:${currentTimeObj.sec}`
+      })
+      // 设置音乐播放位置
+      backAudioManager.seek(this.data._duration*this.data.progress/100) // 参数为秒，当前进度(0-100因此要除100)*总秒数
+    },
     // 获取dom信息-滑块宽度
     _getMoveDisX(){
       // 页面用wx.createSelectorQuery，组件可用this（指向wx）
@@ -49,7 +71,8 @@ Component({
     _bindBGMEvent(){
       backAudioManager.onPlay(()=>{
         console.log('onPlay');
-      })
+        this.data._isMove&&(this.data._isMove = false)
+    })
 
       backAudioManager.onStop(()=>{
         console.log('onStop');
@@ -78,17 +101,18 @@ Component({
       })
 
       backAudioManager.onTimeUpdate(()=>{
-        console.log('onTimeUpdate');
+        // console.log('onTimeUpdate');
+        if(this.data._isMove) return
         const currentSec = backAudioManager.currentTime // 监听获取当前播放秒数
-        const duration = backAudioManager.duration  // 获取音频总秒数
+        this.data._duration = backAudioManager.duration  // 获取音频总秒数
         const currentTimeObj = this._dateFormat(currentSec)
 
         // 手动节流为1秒才setData，通过判断当前秒数小数点前一个值是否相等
         if(currentSec.toString().split('.')[0]==this.data._preSecond) return
         console.log('一秒执行一次setData',currentSec);
         this.setData({
-          moveDisX:(this.data._areaDomWidth-this.data._viewDomWidth)*currentSec/duration,
-          progress:currentSec/duration*100,
+          moveDisX:(this.data._areaDomWidth-this.data._viewDomWidth)*currentSec/this.data._duration,
+          progress:currentSec/this.data._duration*100,
           ['time.currentTime']:`${currentTimeObj.min}:${currentTimeObj.sec}`
         })
         this.data._preSecond = currentSec.toString().split('.')[0]
