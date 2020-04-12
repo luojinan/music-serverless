@@ -145,8 +145,8 @@ Component({
       const min = Math.floor(sec/60)  // 四舍五入取整
       sec = Math.floor(sec%60)
       return {
-        min:this._parse0(min),
-        sec:this._parse0(sec)
+        min:this._parse0(min)||'00',
+        sec:this._parse0(sec)||'00'
       }
     },
     // 补零

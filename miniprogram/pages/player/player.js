@@ -70,6 +70,10 @@ Page({
       }
     })
     console.log('获取歌单歌曲列表',res)
+    // vip歌曲，无法获取音频资源
+    if(res.result.data[0].url==null){
+      return wx.showToast({title: '无权限播放',icon:'none'})
+    }
     backAudioManager.src = res.result.data[0].url
     backAudioManager.title = this.data._musicDetail.name
     backAudioManager.coverImgUrl = this.data._musicDetail.al.picUrl
