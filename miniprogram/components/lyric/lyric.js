@@ -11,7 +11,8 @@ Component({
    * 组件的初始数据
    */
   data: {
-    lrcList:''
+    lrcList:'',
+    currentIndex:0
   },
   // 监听器
   observers:{
@@ -26,7 +27,18 @@ Component({
   methods: {
     // 获取当前播放秒数，并找到第几个歌词
     updateCurrentSec(second){
-      console.log(second);
+      console.log(second,'???');
+      const lrcList = this.data.lrcList
+      // 纯音乐情况
+      if(lrcList.length==0) return
+      for (let index = 0; index < lrcList.length; index++) {
+        // 当找到当前秒数在哪个区间（10  大于1赋值1 大于2赋值2 大于3赋值3...小于则跳出），即取出index，并中断循环
+        if(second<=lrcList[index].time){
+          this.data.currentIndex = index-1
+          break
+        }
+        this.setData({currentIndex: this.data.currentIndex})
+      }
     },
     _parseLyric(string){
       // 用换行符分割为数组

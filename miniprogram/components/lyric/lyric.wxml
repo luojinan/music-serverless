@@ -2,7 +2,7 @@
 <scroll-view class="lyric-scroll">
   <view class="lyric-wrapper">
     <block wx:for="{{lrcList}}" wx:key="index">
-      <view class="lyric-text">{{item.lrcText}}</view>
+      <view class="lyric-text {{index==currentIndex?'hightlight-lyric-text':''}}" >{{item.lrcText}}</view>
     </block>
   </view>
 </scroll-view>
