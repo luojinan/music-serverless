@@ -26,6 +26,7 @@ Component({
   
   lifetimes: {
     ready() {
+      if(this.data.time.totalTime==='00:00') this._setDuration() // 页面缓存有歌曲时，不重新获取音频，因此要手动获取时长
       this._getMoveDisX()
       this._bindBGMEvent()
     },
