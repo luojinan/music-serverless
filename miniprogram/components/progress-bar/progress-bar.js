@@ -96,6 +96,7 @@ Component({
 
       backAudioManager.onEnded(()=>{
         console.log('onEnded');
+        this.triggerEvent('musicEnd')
       })
 
       backAudioManager.onError((res)=>{
