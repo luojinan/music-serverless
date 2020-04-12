@@ -35,7 +35,6 @@ Component({
    */
   methods: {
     onChange(event){
-      console.log(event)
       if(event.detail.source == 'touch'){
         this.data._isMove = true
         this.data.moveDisX = event.detail.x // 滑块背景色位置

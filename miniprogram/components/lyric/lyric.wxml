@@ -1,0 +1,5 @@
+<!--components/lyric/lyric.wxml-->
+<scroll-view class="lyric-com">
+  歌词组件
+</scroll-view>
+  

@@ -10,7 +10,8 @@ Page({
     _musicDetail:'',  // 根据序列从歌曲列表中取歌曲详情数据
     _musicList:[],    // 本地缓存跳转来的歌曲列表
     songImgUrl:'',    // 根据歌曲id云函数获取的歌曲资源url
-    isPlaying:false
+    isPlaying:false,
+    showLyric:false   // 控制显示歌词组件
   },
   onNext(){
     this.data._musiceIndex++
@@ -25,6 +26,12 @@ Page({
       this.data._musiceIndex = this.data._musicList.length-1
     }
     this.getMusicDetail()
+  },
+  // 切换显示歌词
+  onChangeShowLyric(){
+    this.setData({
+      showLyric:!this.data.showLyric
+    })
   },
   // 切换播放状态
   togglePlaying(){

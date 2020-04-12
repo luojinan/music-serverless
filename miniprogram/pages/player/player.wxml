@@ -4,10 +4,15 @@
 
 <view class="player-info_wrapper">
   <!-- 中间唱片部分 -->
-  <view class="player-songimg {{isPlaying?'needle':''}}">
+  <view class="player-songimg {{isPlaying?'needle':''}}" catch:tap="onChangeShowLyric" hidden="{{showLyric}}">
     <image class="player-image rotation {{isPlaying?'':'rotation-paused'}}" src="{{songImgUrl}}" />
   </view>
 
+  <!-- 中间歌词部分 -->
+  <view catch:tap="onChangeShowLyric" hidden="{{!showLyric}}">
+    <x-lyric />
+  </view>
+    
   <!-- 进度条部分 -->
   <view class="progress-bar_warpper">
     <x-progress-bar bind:musicEnd="onNext"></x-progress-bar>
