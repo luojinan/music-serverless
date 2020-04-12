@@ -28,6 +28,10 @@ Page({
     }
     this.getMusicDetail()
   },
+  // 接收进度条组件，当前播放秒数，直接触发歌词组件的事件
+  timeUpdate(event){
+    this.selectComponent('.lrc-dom').updateCurrentSec(event.detail.currentSec)
+  },
   // 切换显示歌词
   onChangeShowLyric(){
     this.setData({

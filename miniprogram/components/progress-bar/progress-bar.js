@@ -115,6 +115,7 @@ Component({
           ['time.currentTime']:`${currentTimeObj.min}:${currentTimeObj.sec}`
         })
         this.data._preSecond = currentSec.toString().split('.')[0]
+        this.triggerEvent('timeUpdate',{currentSec})  // 当前播放秒数通过页面传到歌词组件
       })
 
       backAudioManager.onEnded(()=>{

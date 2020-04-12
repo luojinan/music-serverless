@@ -24,6 +24,10 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    // 获取当前播放秒数，并找到第几个歌词
+    updateCurrentSec(second){
+      console.log(second);
+    },
     _parseLyric(string){
       // 用换行符分割为数组
       let arr = string.split('\n')

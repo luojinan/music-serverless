@@ -10,12 +10,12 @@
 
   <!-- 中间歌词部分 -->
   <view class="lyric-comp" catch:tap="onChangeShowLyric" hidden="{{!showLyric}}">
-    <x-lyric lyric="{{lyric}}" />
+    <x-lyric class="lrc-dom" lyric="{{lyric}}" />
   </view>
     
   <!-- 进度条部分 -->
   <view class="progress-bar_warpper">
-    <x-progress-bar bind:musicEnd="onNext"></x-progress-bar>
+    <x-progress-bar bind:musicEnd="onNext" bind:timeUpdate="timeUpdate"></x-progress-bar>
   </view>
   <!-- 切歌部分 -->
   <view class="player-control">
