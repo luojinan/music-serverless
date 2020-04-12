@@ -77,7 +77,7 @@ Page({
       }
     })
     this.setData({
-      lyric:res.result.lrc.lyric||'暂无歌词'
+      lyric:res.result.lrc&&res.result.lrc.lyric||'暂无歌词'
     })
   },
   // 根据歌曲序列获取本地缓存当前歌曲信息

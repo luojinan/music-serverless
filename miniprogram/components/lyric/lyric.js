@@ -20,7 +20,15 @@ Component({
   observers:{
     lyric(val){
       // console.log(val);
-      this._parseLyric(val)
+      if(val=='暂无歌词'){
+        this.setData({
+          lrcList:[{
+            lrcText:val,
+            time:0
+          }],
+          currentIndex:-1
+        })
+      }else this._parseLyric(val)
     }
   },
   lifetimes:{
@@ -40,10 +48,23 @@ Component({
   methods: {
     // 获取当前播放秒数，并找到第几个歌词
     updateCurrentSec(second){
-      console.log(second,'???');
       const lrcList = this.data.lrcList
+      console.log(second,lrcList[lrcList.length-1])
       // 纯音乐情况
       if(lrcList.length==0) return
+
+      // 滑动使播放时间大于所有歌词时间段情况(排序解决最后是歌手信息的情况？)
+      if(lrcList[lrcList.length-1].time&&second>lrcList[lrcList.length-1].time){
+        if(this.data.currentIndex!=-1){
+          this.setData({
+            currentIndex: -1, // 触发一次就不再触发定位歌词事件
+            scrollTop:lrcList.length * this.data._lyrTextHeight   // 最后一句歌词位置
+          })
+        }
+        return
+      }
+
+      // 动态滑动情况
       for (let index = 0; index < lrcList.length; index++) {
         // 当找到当前秒数在哪个区间（10  大于1赋值1 大于2赋值2 大于3赋值3...小于则跳出），即取出index，并中断循环
         if(second<=lrcList[index].time){
