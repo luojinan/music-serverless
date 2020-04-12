@@ -11,7 +11,8 @@ Page({
     _musicList:[],    // 本地缓存跳转来的歌曲列表
     songImgUrl:'',    // 根据歌曲id云函数获取的歌曲资源url
     isPlaying:false,
-    showLyric:false   // 控制显示歌词组件
+    showLyric:false,  // 控制显示歌词组件
+    lyric:''          // 歌词字符串
   },
   onNext(){
     this.data._musiceIndex++
@@ -62,6 +63,19 @@ Page({
     })
     wx.hideLoading()
   },
+  // 云函数获取音乐歌词字符串数据
+  async getMusicLyric(){
+    const res = await wx.cloud.callFunction({
+      name:'music',
+      data:{
+        musicId:this.data._musicList[this.data._musiceIndex].id,
+        $url:'lyric'
+      }
+    })
+    this.setData({
+      lyric:res.result.lrc.lyric||'暂无歌词'
+    })
+  },
   // 根据歌曲序列获取本地缓存当前歌曲信息
   getMusicDetail(){
     this.data._musicList = wx.getStorageSync('musiclist')
@@ -72,6 +86,7 @@ Page({
       songImgUrl: this.data._musicDetail.al.picUrl
     })
     this.getMusicUrl()
+    this.getMusicLyric()
   },
   /**
    * 生命周期函数--监听页面加载

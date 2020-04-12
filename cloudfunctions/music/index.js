@@ -47,6 +47,15 @@ exports.main = async (event, context) => {
     ctx.body = musicUrlRes
   })
 
+  // 根据musicId获取歌词字符串数据
+  app.router('lyric',async(ctx,next)=>{
+    // 获取网易云歌单列表数据
+    const res = await request(`${BASE_URL}/lyric?id=${event.musicId}`)
+    const lyricRes = JSON.parse(res)
+    // 该路由返回值，不再是直接return
+    ctx.body = lyricRes
+  })
+
   // 云函数返回中间处理后的路由
   return app.serve()
 }

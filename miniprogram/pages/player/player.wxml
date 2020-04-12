@@ -10,7 +10,7 @@
 
   <!-- 中间歌词部分 -->
   <view catch:tap="onChangeShowLyric" hidden="{{!showLyric}}">
-    <x-lyric />
+    <x-lyric lyric="{{lyric}}" />
   </view>
     
   <!-- 进度条部分 -->

@@ -4,6 +4,7 @@ Component({
    * 组件的属性列表
    */
   properties: {
+    lyric:String  // 页面传进来的歌词字符串
   },
 
   /**
@@ -12,7 +13,12 @@ Component({
   data: {
 
   },
-
+  // 监听器
+  observers:{
+    lyric(val){
+      console.log(val);
+    }
+  },
   /**
    * 组件的方法列表
    */
