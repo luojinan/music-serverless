@@ -1,0 +1,5 @@
+<view class="container">
+  <i class="iconfont-class icon-sousuo-class search-icon"></i>
+  <input class="input-bar" confirm-type="search" placeholder="{{placeholder}}"></input>
+  <button class="search" size="mini">搜索</button>
+</view>

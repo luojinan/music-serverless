@@ -30,6 +30,10 @@
 		"game": {
 			"list": []
 		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
 		"miniprogram": {
 			"current": 2,
 			"list": [
@@ -51,6 +55,12 @@
 					"name": "播放页",
 					"pathName": "pages/player/player",
 					"query": "index=0",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "发现",
+					"pathName": "pages/blog/blog",
 					"scene": null
 				}
 			]
