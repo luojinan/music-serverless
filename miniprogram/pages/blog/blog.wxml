@@ -8,4 +8,7 @@
       <x-search iconfont-class="iconfont" icon-sousuo-class="icon-sousuo"></x-search>
     </view>
   </view>
+
+
+  <x-login modalShow="{{modalShow}}" bind:loginsuccess="onLoginSuccess" bind:loginfail="onLoginFail"></x-login>
 </view>

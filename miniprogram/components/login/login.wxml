@@ -1,0 +1,6 @@
+<!--components/login/login.wxml-->
+<x-bottom-model modalShow="{{modalShow}}">
+  <view>
+    <button class="login" open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">获取微信授权信息</button>
+  </view>
+</x-bottom-model>
