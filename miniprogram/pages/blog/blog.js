@@ -8,6 +8,11 @@ Page({
     modalShow:false
   },
   onPublish(){
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
+      
     // 判断是否登录（用是否授权过，而不是是否有用户信息）
     wx.getSetting({
       success: (result) => {
