@@ -6,20 +6,20 @@ const showModal = promisify(wx.showModal)
 Page({
   data: {
     modalShow: false,
-    blogLlist:[]
+    blogList:[]
   },
   async init(){
     wx.showLoading({title:'加载中...'});
     const res = await wx.cloud.callFunction({
       name:'blog',
       data:{
-        start:this.data.blogLlist.length,
+        start:this.data.blogList.length,
         limit:10,
         $url:'bloglist'
       }
     })
     this.setData({
-      blogLlist:this.data.blogLlist.concat(res.result.data),
+      blogList:this.data.blogList.concat(res.result.data),
       total: res.result.total
     })
     wx.hideLoading()
