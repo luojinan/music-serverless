@@ -15,8 +15,20 @@ exports.main = async (event, context) => {
 
   // 分页获取blog列表
   app.router('bloglist',async(ctx,next)=>{
-    const total = await Blog.count()  // 返回的是对象
-    const res = await Blog.skip(event.start)
+    // 模糊查询-where() 正则,当正则需要用到变量时用`db.RegExp()`，其他情况可以直接/xxxx/
+    const searchKey = event.searchKey
+    let w = {}
+    if(searchKey.trim()!=''){
+      w = {
+        msgText:db.RegExp({
+          regexp:searchKey,
+          options:'i'
+        })
+      }
+    }
+
+    const total = await Blog.where(w).count()  // 返回的是对象
+    const res = await Blog.where(w).skip(event.start)
                               .limit(event.limit)
                               .orderBy('createTime','desc')
                               .get()

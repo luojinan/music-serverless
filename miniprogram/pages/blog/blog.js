@@ -3,16 +3,25 @@ import {promisify} from 'miniprogram-api-promise';
 const getSetting = promisify(wx.getSetting)
 const getUserInfo = promisify(wx.getUserInfo)
 const showModal = promisify(wx.showModal)
+let searchKey = ''
 Page({
   data: {
     modalShow: false,
     blogList:[]
+  },
+  onSearch(e){
+    searchKey = e.detail
+    this.setData({
+      blogList:[]
+    })
+    this.init()
   },
   async init(){
     wx.showLoading({title:'加载中...'});
     const res = await wx.cloud.callFunction({
       name:'blog',
       data:{
+        searchKey,
         start:this.data.blogList.length,
         limit:10,
         $url:'bloglist'
