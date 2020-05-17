@@ -3,7 +3,7 @@
     <image class="blog-portrait" src="{{blog.avatarUrl}}" lazy-load />
     <view class="blog-box">
       <view>{{blog.nickName}}</view>
-      <view class="blog-time">{{blog.createTime}}</view>
+      <view class="blog-time">{{_createTime}}</view>
     </view>
   </view>
   <view class="blog-content">{{blog.msgText}}</view>
