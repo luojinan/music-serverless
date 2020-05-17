@@ -1,4 +1,6 @@
 // miniprogram/pages/blog-edit/blog-edit.js
+import { promisify } from 'miniprogram-api-promise';
+const chooseImage = promisify(wx.chooseImage)
 const MAX_WORDS_NUM = 140
 const MAX_IMAGE_NUM = 140
 Page({
@@ -11,19 +13,15 @@ Page({
     wordsNum:0,
     footerBottom:0
   },
-  onChooseImage(){
-    wx.chooseImage({
+  async onChooseImage(){
+    const res = await chooseImage({
       count: MAX_IMAGE_NUM-this.data.images.length,
       sizeType: ['original', 'compressed'],
-      sourceType: ['album', 'camera'],
-      success: (result) => {
-        this.setData({
-          images:[...this.data.images,...result.tempFilePaths]
-        })
-      },
-      fail: () => {},
-      complete: () => {}
-    });
+      sourceType: ['album', 'camera']
+    })
+    this.setData({
+      images:[...this.data.images,...res.tempFilePaths]
+    })
   },
   onPreviewImage(e){
     console.log(e.target);
