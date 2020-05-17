@@ -9,7 +9,7 @@
   <view class="blog-content">{{blog.msgText}}</view>
   <view class="blog-img">
     <block wx:for="{{blog.imgs}}" wx:key="index">
-      <image class="img" src="{{item}}" mode="aspectFill" lazy-load bind:tap="onPreview" data-imgurl="{{item}}" />
+      <image class="img" src="{{item}}" mode="aspectFill" lazy-load catch:tap="onPreview" data-imgurl="{{item}}" />
     </block>
   </view>
 </view>

@@ -62,6 +62,10 @@ Page({
       })
     }
   },
+  toDetail(e){
+    const id = e.target.dataset.blogid
+    wx.navigateTo({url: `../../pages/blog-detail/blog-detail?id=${id}`})
+  },
   /**
    * 生命周期函数--监听页面加载
    */
