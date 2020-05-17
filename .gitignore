@@ -1,6 +1,5 @@
 # compiled output
 /cloudfunctions/node_modules
-/cloudfunctions/getPlaylist/node_modules
-/cloudfunctions/music/node_modules
+/cloudfunctions/*/node_modules
 /node_modules
 /miniprogram/miniprogram_npm
