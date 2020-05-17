@@ -5,7 +5,25 @@ const getUserInfo = promisify(wx.getUserInfo)
 const showModal = promisify(wx.showModal)
 Page({
   data: {
-    modalShow: false
+    modalShow: false,
+    blogLlist:[]
+  },
+  async init(){
+    wx.showLoading({title:'加载中...'});
+    const res = await wx.cloud.callFunction({
+      name:'blog',
+      data:{
+        start:this.data.blogLlist.length,
+        limit:10,
+        $url:'bloglist'
+      }
+    })
+    this.setData({
+      blogLlist:this.data.blogLlist.concat(res.result.data),
+      total: res.result.total
+    })
+    wx.hideLoading()
+    wx.stopPullDownRefresh()
   },
   async onPublish() {
     wx.showLoading({
@@ -48,6 +66,23 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.init()
+  },
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+    this.setData({
+      blogList:[]
+    })
+    this.init()
+  },
 
-  }
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+    if(this.data.blogList.length == this.data.total) return
+    this.init()
+  },
 })

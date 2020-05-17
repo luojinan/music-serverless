@@ -2,15 +2,27 @@
 const cloud = require('wx-server-sdk')
 
 cloud.init()
+const db =  cloud.database()
+const Blog = db.collection('blog')
+
+// 引入类路由中间件
+const TcbRouter = require('tcb-router');
 
 // 云函数入口函数
 exports.main = async (event, context) => {
-  const wxContext = cloud.getWXContext()
+  // 实例化中间件
+  const app = new TcbRouter({ event }) // 传入前端上传参数
 
-  return {
-    event,
-    openid: wxContext.OPENID,
-    appid: wxContext.APPID,
-    unionid: wxContext.UNIONID,
-  }
+  // 分页获取blog列表
+  app.router('bloglist',async(ctx,next)=>{
+    const total = await Blog.count()  // 返回的是对象
+    const res = await Blog.skip(event.start)
+                              .limit(event.limit)
+                              .orderBy('createTime','desc')
+                              .get()
+    // 该路由返回值，不再是直接return
+    ctx.body = {...res,total:total.total}
+  })
+
+  return app.serve()
 }
