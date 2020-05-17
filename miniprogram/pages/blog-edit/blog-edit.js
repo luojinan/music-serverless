@@ -62,6 +62,11 @@ Page({
     await db.collection('blog').add(params)
     wx.showToast({title: '发布成功'})
     wx.navigateBack()
+    // 跳转后再调用上一页面刷新事件
+    const pages = getCurrentPages();  // 取到页面实例数组
+    // 上一页面，为总长度-1，要取序列则减2
+    const prePage = pages[pages.length-2]
+    prePage.onPullDownRefresh()
   },
   async onSubmit() {
     if (!msgText) {

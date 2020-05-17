@@ -47,7 +47,7 @@ Page({
   },
   onLoginSuccess(e) {
     const userInfo = e.detail
-    wx.redirectTo({
+    wx.navigateTo({
       url: `../blog-edit/blog-edit?nickName=${userInfo.nickName}&avatarUrl=${userInfo.avatarUrl}`
     })
   },
