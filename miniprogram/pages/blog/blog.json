@@ -2,6 +2,7 @@
   "usingComponents": {
     "x-search":"/components/search/search",
     "x-blog-card":"/components/blog-card/blog-card",
+    "x-blog-ctrl":"/components/blog-ctrl/blog-ctrl",
     "x-login":"/components/login/login"
   },
   "enablePullDownRefresh":true
