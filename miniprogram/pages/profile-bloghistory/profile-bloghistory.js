@@ -1,27 +1,11 @@
-// miniprogram/pages/profile/profile.js
+// miniprogram/pages/profile-bloghistory/profile-bloghistory.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    navigatList:[
-      {
-        icon:'icon-ziyuanldpi',
-        url:'/pages/profile-playhistory/profile-playhistory',
-        text:'最近播放'
-      },
-      {
-        icon:'icon-shoucang',
-        url:'/pages/profile-bloghistory/profile-bloghistory',
-        text:'我的发现'
-      },
-      {
-        icon:'icon-weibiaoti',
-        url:'',
-        text:'小程序码'
-      }
-    ]
+
   },
 
   /**

@@ -1,2 +1,17 @@
-<!--miniprogram/pages/profile/profile.wxml-->
-<text>miniprogram/pages/profile/profile.wxml</text>
+<view class="profile-header">
+  <view class="avatar-url">
+    <open-data type="userAvatarUrl" />
+  </view>
+  <open-data class="nickname" type="userNickName"></open-data>
+</view>
+<view class="nav">
+  <block wx:for="{{navigatList}}" wx:key="index">
+    <view class="nav-item">
+      <navigator class="nav-url" url="{{item.url}}" hover-class="none">
+        <i class="iconfont {{item.icon}}"></i>
+        <text class="text">{{item.text}}</text>
+        <i class="iconfont icon-xiangyou"></i>
+      </navigator>
+    </view>
+  </block>
+</view>

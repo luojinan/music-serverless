@@ -83,6 +83,13 @@
 					"pathName": "pages/blog-detail/blog-detail",
 					"query": "id=aa9f906d5ec11ba100f4ccc75f8e10ed",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的",
+					"pathName": "pages/profile/profile",
+					"query": "id=aa9f906d5ec11ba100f4ccc75f8e10ed",
+					"scene": null
 				}
 			]
 		}
