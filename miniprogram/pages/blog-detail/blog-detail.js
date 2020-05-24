@@ -6,10 +6,11 @@ Page({
    * 页面的初始数据
    */
   data: {
+    blogId:'',
     blogDetail:{},
     commentList:[]
   },
-  async getBlogDetail(blogId){
+  async getBlogDetail(){
     wx.showLoading({
       title: '加载中',
       mask: true
@@ -18,7 +19,7 @@ Page({
       name:'blog',
       data:{
         $url:'detail',
-        blogId
+        blogId:this.data.blogId
       }
     })
     console.log(res.result.blogDetail.data);
@@ -36,8 +37,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options);
-    this.getBlogDetail(options.id)
+    this.setData({
+      blogId:options.id
+    })
+    this.getBlogDetail()
   },
 
   /**
@@ -85,7 +88,10 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-
+  onShareAppMessage: function (e) {
+    return{
+      title:this.data.blogDetail.msgText,
+      path:`/pages/blog-detail/blog-detail?id=${this.data.blogDetail._id}`
+    }
   }
 })

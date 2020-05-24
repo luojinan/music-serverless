@@ -33,3 +33,16 @@
   margin-left: 20rpx;
   font-size: 18rpx;
 }
+.share-btn{
+  padding: 0;
+  height: 100%;
+  font-size: 28rpx;
+  font-weight: 400;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  color: rgba(40, 47, 60, .8);
+  background-color: #fff;
+}

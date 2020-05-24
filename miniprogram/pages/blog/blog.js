@@ -98,4 +98,14 @@ Page({
     if(this.data.blogList.length == this.data.total) return
     this.init()
   },
+  /**
+  * 用户点击右上角分享
+  */
+ onShareAppMessage: function (e) {
+   return{
+     title:e.target.dataset.content,
+     path:`/pages/blog-detail/blog-detail?id=${e.target.dataset.blogid}`,
+     imageUrl:e.target.dataset.shareimg
+   }
+ }
 })

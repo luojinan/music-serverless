@@ -19,6 +19,6 @@
 </view>
 
 <view class="blog-ctrl">
-  <x-blog-ctrl blogId="{{blogDetail._id}}"></x-blog-ctrl>
+  <x-blog-ctrl blogId="{{blogDetail._id}}" bind:commentSuccess="getBlogDetail"></x-blog-ctrl>
 </view>
   

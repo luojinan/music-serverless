@@ -8,10 +8,11 @@
   border-bottom: 1px solid #eee;
 }
 .comment-list{
-  padding: 20rpx;
+  padding: 0 20rpx;
   background-color: #fff;
 }
 .comment{
+  padding: 20rpx 0;
   border-bottom: 1px solid #eee;
 }
 .comment:last-child{

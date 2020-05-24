@@ -9,7 +9,9 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    blogId:String
+    blogId:String,
+    blogContent:String,
+    shareImg:String
   },
   extenrnalClasses:['iconfont','icon-fenxiang','icon-pinglun'],
   /**
@@ -110,6 +112,7 @@ Component({
           avatarUrl:userInfo.avatarUrl
         }
       })
+      this.triggerEvent('commentSuccess')
       wx.showToast({title: '评论成功'})
       this.setData({
         showModal:false,
