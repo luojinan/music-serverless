@@ -1,2 +1,8 @@
-<!--miniprogram/pages/profile-bloghistory/profile-bloghistory.wxml-->
-<text>miniprogram/pages/profile-bloghistory/profile-bloghistory.wxml</text>
+<view class="blog-list">
+  <block wx:for="{{blogList}}" wx:key="index">
+    <view class="blog-panel">
+      <x-blog-card blog="{{item}}" bind:tap="toDetail" data-blogid="{{item._id}}" />
+      <x-blog-ctrl blogId="{{item._id}}" shareImg="{{item.imgs[0]}}" blogContent="{{item.msgText}}" iconfonst="iconfont" icon-pinglun="icon-pinglun" icon-fenxiang="icon-fenxiang"></x-blog-ctrl>
+    </view>
+  </block>
+</view>

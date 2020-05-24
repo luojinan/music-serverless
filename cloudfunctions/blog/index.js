@@ -31,7 +31,6 @@ exports.main = async (event, context) => {
     const total = await Blog.where(w).count()  // 返回的是对象
     const res = await Blog.where(w).skip(event.start)
                               .limit(event.limit)
-                              .orderBy('createTime','desc')
                               .get()
     // 该路由返回值，不再是直接return
     ctx.body = {...res,total:total.total}
@@ -40,10 +39,23 @@ exports.main = async (event, context) => {
 app.router('detail',async(ctx,next)=>{
   const blogId = event.blogId
   const blogDetail = await Blog.doc(blogId).get()
-  const commentRes = await BlogComment.where({blogId}).orderBy('createTime','desc').get()
 
   // 该路由返回值，不再是直接return
   ctx.body = {blogDetail,commentRes}
 })
+
+// 我的博客列表
+app.router('getBlogByOpenid',async(ctx,next)=>{
+  const wxContext = cloud.getWXContext()
+    const total = await Blog.where({openid:wxContext.OPENID}).count()  // 返回的是对象
+    const res = await Blog.where({_openid:wxContext.OPENID})
+                                .skip(event.start)
+                                .limit(event.limit)
+                                .orderBy('createTime','desc')
+                                .get()
+  // 该路由返回值，不再是直接return
+  ctx.body = {...res,total:total.total}
+})
+
   return app.serve()
 }
