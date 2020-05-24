@@ -11,7 +11,7 @@
 <x-login modalShow="{{showLogin}}" bind:loginsuccess="onLoginSuccess" bind:loginfail="onloginFail"></x-login>
 <x-bottom-model modalShow="{{showModal}}">
   <view>
-    <textarea name="content" class="comment-content" placeholder="写评论" value="{{content}}" fixed></textarea>
-    <button size="mini" class="send">发送</button>
+    <textarea name="content" class="comment-content" placeholder="写评论" value="{{content}}" bindinput="onInput" fixed></textarea>
+    <button size="mini" class="send" bindtap="onSubmit">发送</button>
   </view>
 </x-bottom-model>
