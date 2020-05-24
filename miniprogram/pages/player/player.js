@@ -16,6 +16,25 @@ Page({
     showLyric:false,  // 控制显示歌词组件
     lyric:''          // 歌词字符串
   },
+  savePlayHistory(){
+    const music = this.data._musicList[this.data._musiceIndex]
+    const openid = app.globalData.openid
+    let history = wx.getStorageSync(openid)
+    let bHave = false
+    for (const item of history) {
+      if(!item){
+        break
+      }else if(item.id==music.id){
+        bHave = true
+        break
+      }
+    }
+    if(!bHave){
+      history.unshift(music)
+      console.log(history,'新数据');
+      wx.setStorageSync(openid, history);
+    }
+  },
   onNext(){
     this.data._musiceIndex++
     if(this.data._musiceIndex == this.data._musicList.length){
@@ -79,6 +98,7 @@ Page({
     backAudioManager.coverImgUrl = this.data._musicDetail.al.picUrl
     backAudioManager.singer = this.data._musicDetail.ar[0].name
     backAudioManager.epname = this.data._musicDetail.al.name
+    this.savePlayHistory()
     this.setData({
       isPlaying:true
     })

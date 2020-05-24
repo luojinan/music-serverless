@@ -13,6 +13,7 @@ App({
         env: 'dev-v2na3',
         traceUser: true,
       })
+      this.getOpenid()
     }
     // 全局变量
     this.globalData = {
@@ -26,5 +27,16 @@ App({
   },
   getPlayMusicId(){
     return this.globalData.playingMusicId
+  },
+  getOpenid(){
+    wx.cloud.callFunction({
+      name:'login'
+    }).then((res)=>{
+      const openid = res.result.openid
+      this.globalData.openid = openid
+      if(!wx.getStorageSync(openid)){
+        wx.setStorageSync(openid, []);
+      }
+    })
   }
 })
