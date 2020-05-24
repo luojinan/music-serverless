@@ -1,2 +1,2 @@
 <!--miniprogram/pages/profile-playhistory/profile-playhistory.wxml-->
-<text>miniprogram/pages/profile-playhistory/profile-playhistory.wxml</text>
+<x-musiclist list="{{musicList}}"></x-musiclist>
