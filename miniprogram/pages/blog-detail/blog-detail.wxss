@@ -1,1 +1,45 @@
 /* miniprogram/pages/blog-detail/blog-detail.wxss */
+.blog-card{
+  margin-bottom: 20rpx;
+}
+.tab{
+  background-color: #fff;
+  padding: 20rpx;
+  border-bottom: 1px solid #eee;
+}
+.comment-list{
+  padding: 20rpx;
+  background-color: #fff;
+}
+.comment{
+  border-bottom: 1px solid #eee;
+}
+.comment:last-child{
+  border-bottom: none;
+}
+.comment-title{
+  display: flex;
+  align-items: center;
+}
+.comment-avatar_img{
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+}
+.comment-nickname{
+  font-size: 24rpx;
+  margin-left: 20rpx;
+}
+.comment-content{
+  margin: 20rpx 0;
+}
+.comment-time{
+  font-size: 24rpx;
+  color: #696969;
+}
+.blog-ctrl{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}

@@ -9,7 +9,7 @@ Component({
    * 组件的属性列表
    */
   properties: {
-
+    blogId:String
   },
   extenrnalClasses:['iconfont','icon-fenxiang','icon-pinglun'],
   /**

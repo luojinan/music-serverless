@@ -4,7 +4,8 @@ const cloud = require('wx-server-sdk')
 cloud.init()
 const db =  cloud.database()
 const Blog = db.collection('blog')
-
+const BlogComment = db.collection('blog-comment')
+const Max_LIMEIT = 100
 // 引入类路由中间件
 const TcbRouter = require('tcb-router');
 
@@ -35,6 +36,14 @@ exports.main = async (event, context) => {
     // 该路由返回值，不再是直接return
     ctx.body = {...res,total:total.total}
   })
+// 博客详情
+app.router('detail',async(ctx,next)=>{
+  const blogId = event.blogId
+  const blogDetail = await Blog.doc(blogId).get()
+  const commentRes = await BlogComment.where({blogId}).orderBy('createTime','desc').get()
 
+  // 该路由返回值，不再是直接return
+  ctx.body = {blogDetail,commentRes}
+})
   return app.serve()
 }

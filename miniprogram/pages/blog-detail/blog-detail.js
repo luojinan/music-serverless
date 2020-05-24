@@ -1,18 +1,43 @@
 // miniprogram/pages/blog-detail/blog-detail.js
+import formatTime from "../../utils/formatTime";
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    blogDetail:{},
+    commentList:[]
   },
-
+  async getBlogDetail(blogId){
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
+    const res = await wx.cloud.callFunction({
+      name:'blog',
+      data:{
+        $url:'detail',
+        blogId
+      }
+    })
+    console.log(res.result.blogDetail.data);
+    let commentList = res.result.commentRes.data
+    for (const item of commentList) {
+      item.createTime = formatTime(new Date(item.createTime))
+    }
+    this.setData({
+      blogDetail:res.result.blogDetail.data,
+      commentList
+    })
+    wx.hideLoading()
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     console.log(options);
+    this.getBlogDetail(options.id)
   },
 
   /**

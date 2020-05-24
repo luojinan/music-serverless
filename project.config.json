@@ -74,6 +74,14 @@
 					"id": -1,
 					"name": "发现",
 					"pathName": "pages/blog/blog",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 4,
+					"name": "博客详情",
+					"pathName": "pages/blog-detail/blog-detail",
+					"query": "id=aa9f906d5ec11ba100f4ccc75f8e10ed",
 					"scene": null
 				}
 			]
